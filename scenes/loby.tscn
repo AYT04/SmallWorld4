@@ -5,19 +5,19 @@
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.786332, 0.617805, 0, -0.617805, 0.786332, 0, 9.43229, 11.898)
 doppler_tracking = 2
 current = true
 script = ExtResource("1_5ppd4")
 lerp_speed = 2.5
-target_path = NodePath("../CharacterBody3D/CameraTarget")
+target_path = NodePath("../Player/CameraTarget")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="."]
 
-[node name="MeshOrigin" type="Node3D" parent="CharacterBody3D"]
+[node name="MeshOrigin" type="Node3D" parent="Player"]
 
-[node name="default_character" parent="CharacterBody3D/MeshOrigin" instance=ExtResource("1_icon3")]
+[node name="default_character" parent="Player/MeshOrigin" instance=ExtResource("1_icon3")]
 
-[node name="CameraTarget" type="Node3D" parent="CharacterBody3D"]
+[node name="CameraTarget" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.88945, 5.12237)
