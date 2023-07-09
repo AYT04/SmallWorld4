@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://wx487o7lswpj"]
+[gd_scene load_steps=3 format=3 uid="uid://wx487o7lswpj"]
 
+[ext_resource type="Script" path="res://player/InterpolatedCamera.gd" id="1_5ppd4"]
 [ext_resource type="PackedScene" uid="uid://dx023j5lvggb8" path="res://assets/exports/default_character.glb" id="1_icon3"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.786332, 0.617805, 0, -0.617805, 0.786332, 0, 9.43229, 11.898)
+doppler_tracking = 2
+current = true
+script = ExtResource("1_5ppd4")
+lerp_speed = 2.5
+target_path = NodePath("../CharacterBody3D/CameraTarget")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 
@@ -11,9 +20,4 @@
 [node name="default_character" parent="CharacterBody3D/MeshOrigin" instance=ExtResource("1_icon3")]
 
 [node name="CameraTarget" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.869182, 0.0698385)
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraTarget"]
-transform = Transform3D(1, 0, 0, 0, 0.786332, 0.617805, 0, -0.617805, 0.786332, 0, 3.12984, 5.11048)
-doppler_tracking = 2
-current = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.88945, 5.12237)
