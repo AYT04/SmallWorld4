@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wx487o7lswpj"]
+[gd_scene load_steps=9 format=3 uid="uid://wx487o7lswpj"]
 
 [ext_resource type="Script" path="res://player/InterpolatedCamera.gd" id="1_5ppd4"]
 [ext_resource type="PackedScene" uid="uid://dx023j5lvggb8" path="res://assets/exports/default_character.glb" id="1_icon3"]
@@ -8,6 +8,13 @@
 size = Vector3(2.1202, 1.99353, 2.3745)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3lml2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5wju"]
+albedo_color = Color(0.227451, 0.431373, 0.254902, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_or312"]
+material = SubResource("StandardMaterial3D_m5wju")
+size = Vector2(20, 20)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cy1s1"]
 
@@ -40,6 +47,14 @@ shape = SubResource("BoxShape3D_nuggm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_3lml2")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_or312")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7794, 0.891316, 0)
 mesh = SubResource("BoxMesh_cy1s1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.72797, 0)
+light_energy = 5.364
+omni_range = 4096.0
