@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Small World 4"
+run/main_scene="res://scenes/scn_dev/scn_dev.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Manager="*res://src/manager/manager.gd"
 
 [rendering]
 
