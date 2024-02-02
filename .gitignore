@@ -1,4 +1,2 @@
 # Godot 4+ specific ignores
 .godot/
-assets/**/*.png
-*.blend1
