@@ -1,17 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvktd60i4fpgf"]
+[gd_scene load_steps=6 format=3 uid="uid://cvktd60i4fpgf"]
 
 [ext_resource type="PackedScene" uid="uid://cmte018uqxnuf" path="res://assets/beginnerIsland/beginnerIsland.glb" id="1_2eiu6"]
 [ext_resource type="PackedScene" uid="uid://bgm32afxr4n47" path="res://assets/tree/tree.glb" id="2_wlb2l"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wfod5"]
+
+[sub_resource type="Sky" id="Sky_772w3"]
+sky_material = SubResource("ProceduralSkyMaterial_wfod5")
+
 [sub_resource type="Environment" id="Environment_ifvjf"]
+background_mode = 2
+background_color = Color(0.85098, 0.772549, 0.713726, 1)
+sky = SubResource("Sky_772w3")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 1
+fog_light_energy = 1.2
+fog_density = 0.0005
+volumetric_fog_length = 0.01
 
 [node name="Node3D" type="Node3D"]
 
 [node name="beginnerIsland" parent="." instance=ExtResource("1_2eiu6")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="beginnerIsland"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58754, 3.8779, -4.94066)
-omni_range = 12.349
 
 [node name="tree" parent="beginnerIsland" instance=ExtResource("2_wlb2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
