@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvktd60i4fpgf"]
+[gd_scene load_steps=9 format=3 uid="uid://cvktd60i4fpgf"]
 
 [ext_resource type="PackedScene" uid="uid://cmte018uqxnuf" path="res://assets/beginnerIsland/beginnerIsland.glb" id="1_2eiu6"]
 [ext_resource type="PackedScene" uid="uid://bgm32afxr4n47" path="res://assets/tree/tree.glb" id="2_wlb2l"]
+[ext_resource type="PackedScene" uid="uid://cmxq6teevu4lk" path="res://assets/robot/robot.glb" id="3_e3t0f"]
+[ext_resource type="Script" path="res://src/camera/follow_player.gd" id="4_vxe1e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wfod5"]
 
@@ -19,15 +21,33 @@ fog_light_energy = 1.2
 fog_density = 0.0005
 volumetric_fog_length = 0.01
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gghgm"]
+radius = 0.708102
+
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ifvjf")
 
 [node name="beginnerIsland" parent="." instance=ExtResource("1_2eiu6")]
 
 [node name="tree" parent="beginnerIsland" instance=ExtResource("2_wlb2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.759226, 0.211115, -0.615635, 0, 0.945927, 0.32438, 0.650827, -0.246277, 0.718172, -23.953, 8.17636, 23.4398)
+[node name="Player" type="CharacterBody3D" parent="beginnerIsland"]
+transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -9.08754, 1.73396, 12.048)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ifvjf")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="beginnerIsland/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928668, 0)
+shape = SubResource("CylinderShape3D_gghgm")
+
+[node name="mesh" parent="beginnerIsland/Player" instance=ExtResource("3_e3t0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100779, 0)
+
+[node name="camera_target" type="Node3D" parent="beginnerIsland/Player"]
+transform = Transform3D(-0.99245, 0.0870673, -0.086368, 0.0283753, 0.848163, 0.528976, 0.11931, 0.522533, -0.844228, -0.8054, 4.55767, -4.31413)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.951105, -1.45369e-08, -0.308868, 0.0993436, 0.946863, 0.305911, 0.292455, -0.321638, 0.900566, -9.08754, 5.27015, 21.435)
+script = ExtResource("4_vxe1e")
+target = NodePath("../beginnerIsland/Player/camera_target")
