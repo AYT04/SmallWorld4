@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvktd60i4fpgf"]
+[gd_scene load_steps=10 format=3 uid="uid://cvktd60i4fpgf"]
 
 [ext_resource type="PackedScene" uid="uid://cmte018uqxnuf" path="res://assets/beginnerIsland/beginnerIsland.glb" id="1_2eiu6"]
 [ext_resource type="PackedScene" uid="uid://bgm32afxr4n47" path="res://assets/tree/tree.glb" id="2_wlb2l"]
+[ext_resource type="Script" path="res://src/inputs/controller.gd" id="3_d52c4"]
 [ext_resource type="PackedScene" uid="uid://cmxq6teevu4lk" path="res://assets/robot/robot.glb" id="3_e3t0f"]
 [ext_resource type="Script" path="res://src/camera/follow_player.gd" id="4_vxe1e"]
 
@@ -35,23 +36,26 @@ environment = SubResource("Environment_ifvjf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
 
 [node name="Player" type="CharacterBody3D" parent="beginnerIsland"]
-transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -9.08754, 1.73396, 12.048)
+transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -9.08754, 10.2392, 12.048)
+slide_on_ceiling = false
+floor_stop_on_slope = false
+
+[node name="mesh" parent="beginnerIsland/Player" instance=ExtResource("3_e3t0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100779, 0)
+
+[node name="controller" type="Node" parent="beginnerIsland/Player"]
+script = ExtResource("3_d52c4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="beginnerIsland/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928668, 0)
 shape = SubResource("CylinderShape3D_gghgm")
 
-[node name="mesh" parent="beginnerIsland/Player" instance=ExtResource("3_e3t0f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100779, 0)
-
-[node name="camera_target" type="Node3D" parent="beginnerIsland/Player"]
-transform = Transform3D(-0.99245, 0.0870673, -0.086368, 0.0283753, 0.848163, 0.528976, 0.11931, 0.522533, -0.844228, -0.8054, 4.55767, -4.31413)
-
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.951105, -1.45369e-08, -0.308868, 0.0993436, 0.946863, 0.305911, 0.292455, -0.321638, 0.900566, -9.08754, 5.27015, 33.3783)
+transform = Transform3D(0.951105, -1.45369e-08, -0.308868, 0.0993436, 0.946863, 0.305911, 0.292455, -0.321638, 0.900566, -9.08754, 5.27015, 20.1369)
 script = ExtResource("4_vxe1e")
 translate_speed = 0.233
 rotate_speed = 0.211
 fov_speed = 0.243
 near_far_speed = 0.254
-target = NodePath("../beginnerIsland/Player/camera_target")
+target = NodePath("../beginnerIsland/Player")
+offset_to_target = Vector3(0, 4, 4)
