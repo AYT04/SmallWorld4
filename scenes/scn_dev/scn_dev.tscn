@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvktd60i4fpgf"]
+[gd_scene load_steps=14 format=3 uid="uid://cvktd60i4fpgf"]
 
 [ext_resource type="PackedScene" uid="uid://cmte018uqxnuf" path="res://assets/beginnerIsland/beginnerIsland.glb" id="1_2eiu6"]
 [ext_resource type="PackedScene" uid="uid://bgm32afxr4n47" path="res://assets/tree/tree.glb" id="2_wlb2l"]
+[ext_resource type="Script" path="res://src/inputs/mvntAnim.gd" id="3_6t2ij"]
 [ext_resource type="Script" path="res://src/inputs/controller.gd" id="3_d52c4"]
 [ext_resource type="PackedScene" uid="uid://cmxq6teevu4lk" path="res://assets/robot/robot.glb" id="3_e3t0f"]
 [ext_resource type="Script" path="res://src/camera/follow_player.gd" id="4_vxe1e"]
@@ -62,12 +63,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
 transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -7.96336, 2.17061, 17.4349)
 safe_margin = 0.611
 
+[node name="mvntAnim" type="Node" parent="beginnerIsland/Player" node_paths=PackedStringArray("glbmesh")]
+script = ExtResource("3_6t2ij")
+glbmesh = NodePath("../glbmesh")
+
 [node name="glbmesh" parent="beginnerIsland/Player" instance=ExtResource("3_e3t0f")]
 transform = Transform3D(0.95073, 0, 0.310013, 0, 1, 0, -0.310013, 0, 0.95073, -0.024497, -0.086031, -0.0242195)
 
-[node name="controller" type="Node" parent="beginnerIsland/Player" node_paths=PackedStringArray("glbmesh")]
+[node name="controller" type="Node" parent="beginnerIsland/Player"]
 script = ExtResource("3_d52c4")
-glbmesh = NodePath("../glbmesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="beginnerIsland/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928668, 0)

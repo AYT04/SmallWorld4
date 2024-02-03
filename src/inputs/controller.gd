@@ -1,21 +1,16 @@
 extends Node
-
+class_name ControledByPlayer
 # Let the user control it's parent with the keyboard
 
 @export var speed: int = 200
 @export var gravity: int = 10
-@export var glbmesh: Node3D
 @export var active: bool = true # Movement can be disabled when inventory is openned for example
 
-var anim: AnimationPlayer
 var parent: CharacterBody3D
 var velocity = Vector2(0, 0)
 
 func _ready():
 	parent = get_parent()
-	assert(glbmesh is Node3D, "You need to provide a glbmesh to animate to contoller")
-	anim = glbmesh.get_node("AnimationPlayer")
-	assert(anim is AnimationPlayer, "contoller has been provided with an invalid glbmesh, no child named AnimationPlayer")
 	assert(parent is CharacterBody3D, "controller must have a CharacterBody3D as parent to control")
 
 func _process(delta):
@@ -62,11 +57,8 @@ func update_position(delta):
 	parent.velocity = Vector3(velocity.x, -gravity, velocity.y)
 	parent.move_and_slide()
 
-	if velocity.length() < 1:
-		anim.play("IdleTrack")
-	else:
-		var target_angle = atan2(velocity.x, velocity.y)
-		var buff = parent.get_rotation()
-		buff.y = lerp_angle(buff.y, target_angle, 0.1)
-		parent.set_rotation(buff)
-		anim.play("WalkTrack")
+	#if velocity.length() >= 1:
+	var target_angle = atan2(velocity.x, velocity.y)
+	var buff = parent.get_rotation()
+	buff.y = lerp_angle(buff.y, target_angle, 0.1)
+	parent.set_rotation(buff)
