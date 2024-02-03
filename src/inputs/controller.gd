@@ -5,6 +5,7 @@ extends Node
 @export var speed: int = 200
 @export var gravity: int = 10
 @export var glbmesh: Node3D
+@export var active: bool = true # Movement can be disabled when inventory is openned for example
 
 var anim: AnimationPlayer
 var parent: CharacterBody3D
@@ -18,10 +19,12 @@ func _ready():
 	assert(parent is CharacterBody3D, "controller must have a CharacterBody3D as parent to control")
 
 func _process(delta):
-	update_position(delta)
+	if active:
+		update_position(delta)
 
 func _unhandled_key_input(event):
-	compute_strength(event)
+	if active:
+		compute_strength(event)
 
 # Keep track of the user inputs 
 var right_strength = 0.0
@@ -48,18 +51,17 @@ func compute_strength(event):
 		up_strength = event.get_action_strength("up")
 	elif event.is_action_released("up"):
 		up_strength = 0.0
-
  
 # Uses the results of compute_strength to more the parent
 func update_position(delta):
 	var userControl = Vector2.ZERO
 	userControl.x = right_strength - left_strength
 	userControl.y = down_strength - up_strength
-	
+
 	velocity = velocity.lerp(userControl.normalized() * speed * delta, 0.1)
 	parent.velocity = Vector3(velocity.x, -gravity, velocity.y)
 	parent.move_and_slide()
-	
+
 	if velocity.length() < 1:
 		anim.play("IdleTrack")
 	else:

@@ -36,7 +36,7 @@ environment = SubResource("Environment_ifvjf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
 
 [node name="Player" type="CharacterBody3D" parent="beginnerIsland"]
-transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -9.08754, 10.2392, 12.048)
+transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -19.1114, 11.1454, -0.445796)
 
 [node name="glbmesh" parent="beginnerIsland/Player" instance=ExtResource("3_e3t0f")]
 transform = Transform3D(0.95073, 0, 0.310013, 0, 1, 0, -0.310013, 0, 0.95073, -0.024497, -0.086031, -0.0242195)
@@ -54,12 +54,12 @@ transform = Transform3D(0.999451, 0, -0.0331377, 0.0324167, 0.207468, 0.977705, 
 light_energy = 0.258
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.951105, -1.45369e-08, -0.308868, 0.0993436, 0.946863, 0.305911, 0.292455, -0.321638, 0.900566, -9.08754, 5.27015, 20.1369)
+[node name="Camera3D" type="Camera3D" parent="beginnerIsland" node_paths=PackedStringArray("target")]
+transform = Transform3D(0.951105, -1.49176e-07, -0.308867, 0.0993436, 0.946863, 0.305911, 0.292455, -0.321638, 0.900566, -9.08754, 5.27015, 20.1369)
 script = ExtResource("4_vxe1e")
 translate_speed = 0.233
 rotate_speed = 0.211
 fov_speed = 0.243
 near_far_speed = 0.254
-target = NodePath("../beginnerIsland/Player")
+target = NodePath("../Player")
 offset_to_target = Vector3(0, 4, 4)
