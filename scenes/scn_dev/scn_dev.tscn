@@ -59,7 +59,7 @@ shape = SubResource("BoxShape3D_jcl5e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
 
 [node name="Player" type="CharacterBody3D" parent="beginnerIsland"]
-transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -19.1114, 11.1454, -0.445796)
+transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -7.96336, 2.17061, 17.4349)
 safe_margin = 0.611
 
 [node name="glbmesh" parent="beginnerIsland/Player" instance=ExtResource("3_e3t0f")]
