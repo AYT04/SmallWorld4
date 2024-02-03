@@ -13,7 +13,7 @@ func _ready():
 	parent = get_parent()
 	assert(parent is CharacterBody3D, "controller must have a CharacterBody3D as parent to control")
 
-func _process(delta):
+func _physics_process(delta):
 	if active:
 		update_position(delta)
 

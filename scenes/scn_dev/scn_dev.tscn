@@ -61,6 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
 
 [node name="Player" type="CharacterBody3D" parent="beginnerIsland"]
 transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -7.96336, 2.17061, 17.4349)
+axis_lock_linear_y = true
 safe_margin = 0.611
 
 [node name="mvntAnim" type="Node" parent="beginnerIsland/Player" node_paths=PackedStringArray("glbmesh")]
