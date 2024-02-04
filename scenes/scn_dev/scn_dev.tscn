@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvktd60i4fpgf"]
+[gd_scene load_steps=15 format=3 uid="uid://cvktd60i4fpgf"]
 
 [ext_resource type="PackedScene" uid="uid://cmte018uqxnuf" path="res://assets/beginnerIsland/beginnerIsland.glb" id="1_2eiu6"]
 [ext_resource type="PackedScene" uid="uid://bgm32afxr4n47" path="res://assets/tree/tree.glb" id="2_wlb2l"]
+[ext_resource type="PackedScene" uid="uid://dgmjkhfnb0uom" path="res://assets/tree/pineTree.glb" id="2_xg0yn"]
 [ext_resource type="Script" path="res://src/inputs/mvntAnim.gd" id="3_6t2ij"]
 [ext_resource type="Script" path="res://src/inputs/controller.gd" id="3_d52c4"]
 [ext_resource type="PackedScene" uid="uid://cmxq6teevu4lk" path="res://assets/robot/robot.glb" id="3_e3t0f"]
@@ -55,6 +56,9 @@ shape = SubResource("BoxShape3D_n4sc6")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="beginnerIsland/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17232, 5.83721, -18.8576)
 shape = SubResource("BoxShape3D_jcl5e")
+
+[node name="pineTree" parent="beginnerIsland" instance=ExtResource("2_xg0yn")]
+transform = Transform3D(-0.951105, 0, 0.308868, 0, 1, 0, -0.308868, 0, -0.951105, -8.01625, 1.59999, -9.92181)
 
 [node name="tree" parent="beginnerIsland" instance=ExtResource("2_wlb2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55672, 0)
